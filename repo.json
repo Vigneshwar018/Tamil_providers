@@ -1,0 +1,23 @@
+{
+
+    "name": "LikDev-256 Providers Repository",
+
+    "description": "Tamil and Indian language Providers",
+
+    "manifestVersion": 1,
+
+    "pluginLists": [
+
+
+
+
+
+
+
+
+
+        "https://raw.githubusercontent.com/Vigneshwar018/Tamil_providers/builds/plugins.json"
+
+    ]
+
+} 
