@@ -1,0 +1,221 @@
+[
+    {
+        "iconUrl": "https://raw.githubusercontent.com/TamilMovie/TamilMovie-tamil-providers/master/EinthusanProvider/icon.png",
+        "fileHash": "sha256-c5c042cd6a801bf4207dd7267eeb78362ea07d274b9ae0ba96f54887d75eeb83",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Vigneshwar018/Tamil_providers",
+        "fileSize": 14686,
+        "status": 1,
+        "language": "ta",
+        "authors": [
+            "TamilMovie"
+        ],
+        "tvTypes": [
+            "Movie"
+        ],
+        "version": 5,
+        "internalName": "EinthusanProvider",
+        "description": "Indian Multi-language HD Provider",
+        "url": "https://raw.githubusercontent.com/Vigneshwar018/Tamil_providers/builds/EinthusanProvider.cs3",
+        "name": "EinthusanProvider"
+    },
+    {
+        "iconUrl": "https://www.google.com/s2/favicons?domain=5movierulz.watch&sz=%size%",
+        "fileHash": "sha256-177b49d767a1a02d770229773b5ed7687a8bd8c5bf9878a195d201d954501522",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Vigneshwar018/Tamil_providers",
+        "fileSize": 11585,
+        "status": 1,
+        "language": "ta",
+        "authors": [
+            "TamilMovie"
+        ],
+        "tvTypes": [
+            "Movie"
+        ],
+        "version": 1,
+        "internalName": "FiveMovierulzWatch",
+        "description": "Tamil, Hollywood & Telugu Dubbed Movies",
+        "url": "https://raw.githubusercontent.com/Vigneshwar018/Tamil_providers/builds/FiveMovierulzWatch.cs3",
+        "name": "FiveMovierulzWatch"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/TamilMovie/TamilMovie-tamil-providers/master/MassTamilanProvider/icon.png",
+        "jarFileSize": 53067,
+        "fileHash": "sha256-b48c3051a6433137a19777bbab7eefbcfa2abcd1394b6abb79170fcb51d99231",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Vigneshwar018/Tamil_providers",
+        "fileSize": 15272,
+        "status": 1,
+        "language": "ta",
+        "authors": [
+            "TamilMovie"
+        ],
+        "tvTypes": [
+            "Music",
+            "Movie"
+        ],
+        "version": 5,
+        "internalName": "MassTamilanProvider",
+        "jarUrl": "https://raw.githubusercontent.com/Vigneshwar018/Tamil_providers/builds/MassTamilanProvider.jar",
+        "description": "Indian Multi-language Music Provider",
+        "url": "https://raw.githubusercontent.com/Vigneshwar018/Tamil_providers/builds/MassTamilanProvider.cs3",
+        "name": "MassTamilanProvider",
+        "jarHash": "sha256-3fb0bc275a525b29b435d8a7dd5e777e4302fdba1f476bb20d37cb243d160c4d"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/TamilMovie/TamilMovie-tamil-providers/master/ShowFlixProvider/icon.png",
+        "jarFileSize": 117136,
+        "fileHash": "sha256-999a3c45b8f4fc7d2e57b6111bf7dc8653a9018be8909bbac5ee36259f96a651",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Vigneshwar018/Tamil_providers",
+        "fileSize": 29366,
+        "status": 1,
+        "language": "hi",
+        "authors": [
+            "TamilMovie"
+        ],
+        "tvTypes": [
+            "TvSeries",
+            "Movie"
+        ],
+        "version": 7,
+        "internalName": "ShowFlixProvider",
+        "jarUrl": "https://raw.githubusercontent.com/Vigneshwar018/Tamil_providers/builds/ShowFlixProvider.jar",
+        "description": "HD Provider for all Indian Languages",
+        "url": "https://raw.githubusercontent.com/Vigneshwar018/Tamil_providers/builds/ShowFlixProvider.cs3",
+        "name": "ShowFlixProvider",
+        "jarHash": "sha256-e9045b3dd8cd38dfe3af64dcedfbfb229f3fcd441ecf7141d879fb19a44a6fec"
+    },
+    {
+        "iconUrl": "https://www.google.com/s2/favicons?domain=tamilarasan.online&sz=%size%",
+        "fileHash": "sha256-4d540c6b24e0d18eac80f8efaff8ac331b6313f7fab7e90c5931bd1dce0fe3e5",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Vigneshwar018/Tamil_providers",
+        "fileSize": 21031,
+        "status": 1,
+        "language": "ta",
+        "authors": [
+            "TamilMovie"
+        ],
+        "tvTypes": [
+            "TvSeries",
+            "Movie"
+        ],
+        "version": 1,
+        "internalName": "TamilArasanProvider",
+        "description": "Tamil, Hindi, Telugu Movies & TV Shows",
+        "url": "https://raw.githubusercontent.com/Vigneshwar018/Tamil_providers/builds/TamilArasanProvider.cs3",
+        "name": "TamilArasanProvider"
+    },
+    {
+        "iconUrl": "https://www.google.com/s2/favicons?domain=tamilian.io&sz=%size%",
+        "fileHash": "sha256-a20656be0de0550d86864d0783c21494677133512468033ec6e457ad605d92c6",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Vigneshwar018/Tamil_providers",
+        "fileSize": 13661,
+        "status": 1,
+        "language": "ta",
+        "authors": [
+            "TamilMovie"
+        ],
+        "tvTypes": [
+            "Movies"
+        ],
+        "version": 1,
+        "internalName": "Tamilian",
+        "description": "Movies (Tamil)",
+        "url": "https://raw.githubusercontent.com/Vigneshwar018/Tamil_providers/builds/Tamilian.cs3",
+        "name": "Tamilian"
+    },
+    {
+        "iconUrl": "https://www.1tamilmv.ing/favicon.ico",
+        "fileHash": "sha256-232ceb06b95cf7dba80e7ef004fca6c6093d07b0d0edccddb1e6de4f5b0e543a",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Vigneshwar018/Tamil_providers",
+        "fileSize": 18227,
+        "status": 1,
+        "language": "ta",
+        "authors": [
+            "TamilMovie"
+        ],
+        "tvTypes": [
+            "TvSeries",
+            "Movie"
+        ],
+        "version": 3,
+        "internalName": "TamilMVProvider",
+        "description": "1TamilMV - Tamil Torrent Provider",
+        "url": "https://raw.githubusercontent.com/Vigneshwar018/Tamil_providers/builds/TamilMVProvider.cs3",
+        "name": "TamilMVProvider"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/TamilMovie/TamilMovie-tamil-providers/master/TamilYogiNewProvider/logo.png",
+        "fileHash": "sha256-d5e013cb86ad923b55d43ca60a37d3be6077ccea250281af30404d778b7a2d00",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Vigneshwar018/Tamil_providers",
+        "fileSize": 12558,
+        "status": 1,
+        "language": "ta",
+        "authors": [
+            "TamilMovie"
+        ],
+        "tvTypes": [
+            "TvSeries",
+            "Movie"
+        ],
+        "version": 7,
+        "internalName": "TamilYogiProvider",
+        "description": "Tamil Only Provider with frequent updates",
+        "url": "https://raw.githubusercontent.com/Vigneshwar018/Tamil_providers/builds/TamilYogiProvider.cs3",
+        "name": "TamilYogiProvider"
+    },
+    {
+        "iconUrl": "https://www.topstreamfilm.live/templates/topstreamfilm/images/logo-1.png",
+        "jarFileSize": 66733,
+        "fileHash": "sha256-3af26f2cbf4caa1504eca79f774e14120c4bf45b79e54630fdab896412159577",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Vigneshwar018/Tamil_providers",
+        "fileSize": 14843,
+        "status": 1,
+        "language": "de",
+        "authors": [
+            "Phisher"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 3,
+        "internalName": "Topstreamfilm",
+        "jarUrl": "https://raw.githubusercontent.com/Vigneshwar018/Tamil_providers/builds/Topstreamfilm.jar",
+        "description": "Filme  and Serien (German)",
+        "url": "https://raw.githubusercontent.com/Vigneshwar018/Tamil_providers/builds/Topstreamfilm.cs3",
+        "name": "Topstreamfilm",
+        "jarHash": "sha256-800a2657fc91cac80a671e249d2e793ca8c3c4e8998a68974a930b4da1a48f66"
+    },
+    {
+        "iconUrl": "https://torrentio.strem.fun/images/logo_v1.png",
+        "fileHash": "sha256-44a2d30a9a8cd2ff76b435cad5bf27a9464c68803a389156f878e14eb2f6b42e",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Vigneshwar018/Tamil_providers",
+        "fileSize": 84639,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "TamilMovie"
+        ],
+        "tvTypes": [
+            "Movie",
+            "Torrent",
+            "AsianDrama",
+            "TvSeries",
+            "Anime"
+        ],
+        "version": 22,
+        "internalName": "TorraStream",
+        "description": "#1 Best Extension \u2013 MultiAPI-Based with 4K Torrent Support (Debian) | Debian Users: Use Site Clone on Torrastream-Debian Example | Provider=Key",
+        "url": "https://raw.githubusercontent.com/Vigneshwar018/Tamil_providers/builds/TorraStream.cs3",
+        "name": "TorraStream"
+    }
+]
