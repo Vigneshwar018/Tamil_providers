@@ -10,7 +10,7 @@ import com.lagradost.cloudstream3.utils.*
 import org.jsoup.nodes.Element
 
 class TamilYogiProvider : MainAPI() { // all providers must be an instance of MainAPI
-    override var mainUrl = "https://tamilyogi.dog"
+    override var mainUrl = "https://tamilvip.bike"
     override var name = "TamilYogi"
     override val hasMainPage = true
     override var lang = "ta"
@@ -42,16 +42,18 @@ class TamilYogiProvider : MainAPI() { // all providers must be an instance of Ma
         } else {
             app.get(request.data + "page/" + page).document
         }
-        //Log.d("CSS element", document.select("ul li").toString())
-        val home = document.select("ul li").mapNotNull {
+//        Log.d("CSS element", document.select("ul li").toString())
+        val home = document.select("div.col-lg-4").mapNotNull {
             it.toSearchResult()
         }
+
+//        println("Vickyjddddddddddddddddddddd")
         return HomePageResponse(arrayListOf(HomePageList(request.name, home, isHorizontalImages = true)), hasNext = true)
         //return newHomePageResponse(request.name, home)
     }
 
     private fun Element.toSearchResult(): SearchResponse? {
-        val titleS = this.selectFirst("div.cover a")?.attr("title")?.toString()?.trim() ?: return null
+        val titleS = this.selectFirst("div.ghead-dinner > h2.entry-title.grid-title >a")?.text()?.toString()?.trim() ?: return null
         val titleRegex = Regex("(^.*\\)\\d*)")
         val title = titleRegex.find(titleS)?.groups?.get(1)?.value.toString()
         //Log.d("title", titleS)
@@ -98,7 +100,7 @@ class TamilYogiProvider : MainAPI() { // all providers must be an instance of Ma
     override suspend fun load(url: String): LoadResponse? {
         val doc = app.get(url).document
         //Log.d("Doc", doc.toString())
-        val titleL = doc.selectFirst("#content h1 a")?.attr("title")?.toString()?.trim() ?: return null
+        val titleL = doc.selectFirst("h1.entry-title")?.text()?.toString()?.trim() ?: return null
         val titleRegex = Regex("(^.*\\)\\d*)")
         val rmGibRegex = Regex("(Permanent Link to )")
         val title = rmGibRegex.replace(titleRegex.find(titleL)?.groups?.get(1)?.value.toString(), "")
