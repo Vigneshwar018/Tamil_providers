@@ -13,7 +13,7 @@ import com.lagradost.cloudstream3.utils.AppUtils.tryParseJson
 import org.jsoup.nodes.Element
 
 class Av1EncodedProvider : MainAPI() { // all providers must be an instance of MainAPI
-    override var mainUrl = "https://www.av1encoded.in"
+    override var mainUrl = "https://www.av1encoded.com"
     override var name = "Av1Encoded"
     override val hasMainPage = true
     override var lang = "ta"
