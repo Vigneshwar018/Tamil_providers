@@ -168,44 +168,44 @@ open class Filelion : ExtractorApi() {
 }
 
 
-//open class StreamRuby : ExtractorApi() {
-//    override val name = "StreamRuby"
-//    override val mainUrl = "https://streamruby.com"
-//    override val requiresReferer = false
-//
-//    override suspend fun getUrl(
-//        url: String,
-//        referer: String?,
-//        subtitleCallback: (SubtitleFile) -> Unit,
-//        callback: (ExtractorLink) -> Unit
-//    ) {
-//        val response=app.get(url,referer=url, headers = mapOf("X-Requested-With" to "XMLHttpRequest")).document
-//
-//        Log.d("VicTest2", url)
-//
-//        val script = response.selectFirst("script:containsData(vplayer)")?.data().toString()
-//        Log.d("VicTest2", script)
-//        val headers = mapOf(
-//            "Accept" to "*/*",
-//            "Connection" to "keep-alive",
-//            "Sec-Fetch-Dest" to "empty",
-//            "Sec-Fetch-Mode" to "cors",
-//            "Sec-Fetch-Site" to "cross-site",
-//            "Origin" to url,
-//        )
-//
-//        Regex("file:\"(.*)\"").find(script)?.groupValues?.get(1)?.let { link ->
-//            callback.invoke(
-//                ExtractorLink(
-//                    this.name,
-//                    this.name,
-//                    link,
-//                    "https://rubystm.com",
-//                    Qualities.P1080.value,
-//                    type = INFER_TYPE,
-//                    headers
-//                )
-//            )
-//        }
-//    }
-//}
+open class StreamRuby : ExtractorApi() {
+    override val name = "StreamRuby"
+    override val mainUrl = "https://streamruby.com"
+    override val requiresReferer = false
+
+    override suspend fun getUrl(
+        url: String,
+        referer: String?,
+        subtitleCallback: (SubtitleFile) -> Unit,
+        callback: (ExtractorLink) -> Unit
+    ) {
+        val response=app.get(url,referer=url, headers = mapOf("X-Requested-With" to "XMLHttpRequest")).document
+
+        Log.d("VicTest2", url)
+
+        val script = response.selectFirst("script:containsData(vplayer)")?.data().toString()
+        Log.d("VicTest2", script)
+        val headers = mapOf(
+            "Accept" to "*/*",
+            "Connection" to "keep-alive",
+            "Sec-Fetch-Dest" to "empty",
+            "Sec-Fetch-Mode" to "cors",
+            "Sec-Fetch-Site" to "cross-site",
+            "Origin" to url,
+        )
+
+        Regex("file:\"(.*)\"").find(script)?.groupValues?.get(1)?.let { link ->
+            callback.invoke(
+                ExtractorLink(
+                    this.name,
+                    this.name,
+                    link,
+                    "https://rubystm.com",
+                    Qualities.P1080.value,
+                    type = INFER_TYPE,
+                    headers
+                )
+            )
+        }
+    }
+}
