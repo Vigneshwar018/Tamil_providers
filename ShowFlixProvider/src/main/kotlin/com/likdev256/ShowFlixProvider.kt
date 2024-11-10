@@ -592,6 +592,7 @@ class ShowFlixProvider : MainAPI() { // all providers must be an instance of Mai
             val main = "https://sbcloud1.com"
             //Log.d("main", main)
             loadStreamSBM3u8(url, main, subtitleCallback, callback)
+
         }
 
         return true

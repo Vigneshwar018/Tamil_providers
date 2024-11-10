@@ -192,6 +192,7 @@ open class StreamRuby : ExtractorApi() {
             "Sec-Fetch-Mode" to "cors",
             "Sec-Fetch-Site" to "cross-site",
             "Origin" to url,
+
         )
 
         Regex("file:\"(.*)\"").find(script)?.groupValues?.get(1)?.let { link ->

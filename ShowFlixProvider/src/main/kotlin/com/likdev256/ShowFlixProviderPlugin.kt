@@ -11,5 +11,6 @@ class ShowFlixProviderPlugin: Plugin() {
         registerExtractorAPI(Streamwish())
         registerExtractorAPI(Filelion())
         registerExtractorAPI(StreamRuby())
+
     }
 }
