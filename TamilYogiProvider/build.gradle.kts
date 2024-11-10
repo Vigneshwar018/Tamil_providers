@@ -25,5 +25,5 @@ cloudstream {
         "TvSeries",
         "Movie",
     )
-    iconUrl = "https://raw.githubusercontent.com/LikDev-256/likdev256-tamil-providers/master/TamilYogiProvider/logo.png"
+    iconUrl = "https://raw.githubusercontent.com/LikDev-256/likdev256-tamil-providers/master/TamilYogiNewProvider/logo.png"
 }
