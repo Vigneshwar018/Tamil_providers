@@ -216,8 +216,11 @@ class TamilYogiProvider : MainAPI() { // all providers must be an instance of Ma
         val script = app.get(source, referer = "$mainUrl/").document.selectFirst("body > script").toString()
         //val links = linkRegex.find(script)?.groups?.get(1)?.value.toString()
         val links = linkRegex.findAll(script).map{it.value.trim()}.toList()
+
 Log.d("Iframe", links.toString())
-//        Log.d("linksNew", links.toString())
+
+        if (links[0].contains(".mp4")){
+
             safeApiCall {
                 callback.invoke(
                     ExtractorLink(
@@ -226,14 +229,14 @@ Log.d("Iframe", links.toString())
                         links[0],
                         "$mainUrl/",
                         Qualities.Unknown.value,
-                        true,
+                        false,
                     )
                 )
                 callback.invoke(
                     ExtractorLink(
                         "TamilYogi",
                         "SD",
-                        links[0],
+                        links[1],
                         "$mainUrl/",
                         Qualities.P480.value,
                         false
@@ -250,6 +253,40 @@ Log.d("Iframe", links.toString())
                     )
                 )
             }
+            } else{
+            safeApiCall {
+                callback.invoke(
+                    ExtractorLink(
+                        "TamilYogi",
+                        "HD",
+                        links[0],
+                        "$mainUrl/",
+                        Qualities.Unknown.value,
+                        true,
+                    )
+                )
+                callback.invoke(
+                    ExtractorLink(
+                        "TamilYogi",
+                        "SD",
+                        links[1],
+                        "$mainUrl/",
+                        Qualities.P480.value,
+                        false
+                    )
+                )
+                callback.invoke(
+                    ExtractorLink(
+                        "TamilYogi",
+                        "Low",
+                        links[2],
+                        "$mainUrl/",
+                        Qualities.P360.value,
+                        false
+                    )
+                )
+            }
+        }
         return true
     }
 }
