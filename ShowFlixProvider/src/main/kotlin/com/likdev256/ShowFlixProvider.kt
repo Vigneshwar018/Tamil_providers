@@ -418,7 +418,7 @@ class ShowFlixProvider : MainAPI() { // all providers must be an instance of Mai
             val m = parseJson<MovieLinks>(data)
             Log.d("Test555",m.toString())
             val filelions = "https://filelions.to/v/" + m.filelions
-            val streamwish = "https://streamwish.to/e/" + m.streamwish
+            val streamwish = "https://embedwish.com/e/" + m.streamwish + ".html"
             val streamruby = "https://streamruby.com/" + m.streamruby
             sources.add(filelions)
             sources.add(streamwish)

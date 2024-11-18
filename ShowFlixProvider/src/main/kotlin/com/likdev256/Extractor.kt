@@ -58,7 +58,7 @@ fun Int.toString(radix: Int): String {
 
 open class Streamwish : ExtractorApi() {
     override val name = "Streamwish"
-    override val mainUrl = "https://streamwish.to"
+    override val mainUrl = "https://embedwish.com"
     override val requiresReferer = false
 
     override suspend fun getUrl(
@@ -74,6 +74,8 @@ open class Streamwish : ExtractorApi() {
 
         val scriptBody = response.selectFirst("body > script")?.data().toString()
 
+        Log.d("VicTest2233", scriptBody)
+
         val script = deobfuscateCode(scriptBody)
         Log.d("VicTest222", script)
         val headers = mapOf(
@@ -85,59 +87,22 @@ open class Streamwish : ExtractorApi() {
             "Origin" to url,
         )
 
-        Regex("file:\"(.*)\"").find(script)?.groupValues?.get(0)?.let { link ->
+        Regex("file:\"(.*)\"").find(script)?.groupValues?.get(1)?.let { link ->
+            Log.d("VicTest22444", link.toString())
             callback.invoke(
                 ExtractorLink(
-                    this.name,
-                    this.name,
-                    link,
-                    "",
-                    Qualities.P1080.value,
+                    source = this.name,
+                    name = this.name,
+                    url = link,
+                    referer = "https://showflix.xyz/",
+                    quality = Qualities.P1080.value,
                     type = INFER_TYPE,
-                    headers
+                    headers = headers
                 )
             )
         }
     }
 }
-
-
-//open class Streamwish1 : ExtractorApi() {
-//    override var name = "Streamwish"
-//    override var mainUrl = "https://streamwish.to"
-//    override val requiresReferer = false
-//
-//    override suspend fun getUrl(url: String, referer: String?): List<ExtractorLink>? {
-//        val responsecode=app.get(url)
-//        Log.d("VicTest", url)
-//        val serverRes = responsecode.document
-//        val scriptBody = serverRes.selectFirst("body > script")?.data().toString()
-//        Log.d("VicTest2", scriptBody)
-//        val script = deobfuscateCode(scriptBody)
-//        val headers = mapOf(
-//            "Accept" to "*/*",
-//            "Connection" to "keep-alive",
-//            "Sec-Fetch-Dest" to "empty",
-//            "Sec-Fetch-Mode" to "cors",
-//            "Sec-Fetch-Site" to "cross-site",
-//            "Origin" to url,
-//        )
-//        Regex("file:\"(.*)\"").find(script)?.groupValues?.get(1)?.let { link ->
-//            return listOf(
-//                ExtractorLink(
-//                    this.name,
-//                    this.name,
-//                    link,
-//                    referer ?: "",
-//                    Qualities.P1080.value,
-//                    type = INFER_TYPE,
-//                    headers
-//                )
-//            )
-//        }
-//        return null
-//    }
-//}
 
 
 open class Filelion : ExtractorApi() {

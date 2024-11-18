@@ -219,7 +219,7 @@ class TamilYogiProvider : MainAPI() { // all providers must be an instance of Ma
 
 Log.d("Iframe", links.toString())
 
-        if (links[0].contains(".mp4")){
+
 
             safeApiCall {
                 callback.invoke(
@@ -229,7 +229,7 @@ Log.d("Iframe", links.toString())
                         links[0],
                         "$mainUrl/",
                         Qualities.Unknown.value,
-                        false,
+                        links[0].contains(".m3u8")
                     )
                 )
                 callback.invoke(
@@ -239,7 +239,7 @@ Log.d("Iframe", links.toString())
                         links[1],
                         "$mainUrl/",
                         Qualities.P480.value,
-                        false
+                        links[1].contains(".m3u8")
                     )
                 )
                 callback.invoke(
@@ -249,44 +249,11 @@ Log.d("Iframe", links.toString())
                         links[2],
                         "$mainUrl/",
                         Qualities.P360.value,
-                        false
+                        links[2].contains(".m3u8")
                     )
                 )
             }
-            } else{
-            safeApiCall {
-                callback.invoke(
-                    ExtractorLink(
-                        "TamilYogi",
-                        "HD",
-                        links[0],
-                        "$mainUrl/",
-                        Qualities.Unknown.value,
-                        true,
-                    )
-                )
-                callback.invoke(
-                    ExtractorLink(
-                        "TamilYogi",
-                        "SD",
-                        links[1],
-                        "$mainUrl/",
-                        Qualities.P480.value,
-                        false
-                    )
-                )
-                callback.invoke(
-                    ExtractorLink(
-                        "TamilYogi",
-                        "Low",
-                        links[2],
-                        "$mainUrl/",
-                        Qualities.P360.value,
-                        false
-                    )
-                )
-            }
-        }
+
         return true
     }
 }
