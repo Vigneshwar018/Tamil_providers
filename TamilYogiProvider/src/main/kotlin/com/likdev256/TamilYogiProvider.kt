@@ -22,8 +22,10 @@ class TamilYogiProvider : MainAPI() { // all providers must be an instance of Ma
 
     //private const val TAG = "TamilYogi"
 
+//    private var newMoiesPage = ""
+
     override val mainPage = mainPageOf(
-        "$mainUrl/tamil-movies-online-tamilmv-new/" to "New Movies",
+        "$mainUrl/tamil-movies-online-one-new/" to "New Movies",
         "$mainUrl/tamil-hd-movies-tamilmv-ott/" to "HD Movies",
         "$mainUrl/tamil-dubbed-movies-online-one-new/" to "Dubbed Movies",
         "$mainUrl/tamilyogi-tamil-web-series-tamilgun-new/" to "TV Series"
@@ -47,7 +49,6 @@ class TamilYogiProvider : MainAPI() { // all providers must be an instance of Ma
             it.toSearchResult()
         }
 
-//        println("Vickyjddddddddddddddddddddd")
         return HomePageResponse(arrayListOf(HomePageList(request.name, home, isHorizontalImages = true)), hasNext = true)
         //return newHomePageResponse(request.name, home)
     }
@@ -209,7 +210,8 @@ class TamilYogiProvider : MainAPI() { // all providers must be an instance of Ma
         subtitleCallback: (SubtitleFile) -> Unit,
         callback: (ExtractorLink) -> Unit
     ): Boolean {
-        val linkRegex = Regex("(https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&=,\\/\\/=]*m3u8))")
+//        val linkRegex = Regex("(https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&=,\\/\\/=]*m3u8))")
+        val linkRegex = Regex("(https?:\\/\\/[^\\s<>\"]+?\\/[^\\s<>\"]+?(?:\\.m3u8|\\.mp4))")
         val source = app.get(data).document.select("iframe").attr("src")
         val script = app.get(source, referer = "$mainUrl/").document.selectFirst("body > script").toString()
         //val links = linkRegex.find(script)?.groups?.get(1)?.value.toString()
@@ -231,7 +233,7 @@ Log.d("Iframe", links.toString())
                     ExtractorLink(
                         "TamilYogi",
                         "SD",
-                        links[1],
+                        links[0],
                         "$mainUrl/",
                         Qualities.P480.value,
                         false

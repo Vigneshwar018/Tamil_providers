@@ -5,7 +5,11 @@ buildscript {
         google()
         mavenCentral()
         // JitPack repo which contains your tools and dependencies
-        maven("https://jitpack.io")
+        maven("https://jitpack.io"  )
+
+
+
+
     }
 
     dependencies {
