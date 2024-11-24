@@ -375,6 +375,7 @@ class ShowFlixProvider : MainAPI() { // all providers must be an instance of Mai
             val combinedSeasons = mutableMapOf<String, MutableMap<Int, List<String?>>>()
             val episodes = TVit.Seasons.Seasons.map { (seasonName, episodes) ->
                 val seasonNum = Regex("\\d+").find(seasonName)?.value?.toInt()
+                 Log.d("VicTVResult", seasonNum.toString())
 
                 episodes.mapIndexed { epNum, data ->
 
@@ -414,6 +415,21 @@ class ShowFlixProvider : MainAPI() { // all providers must be an instance of Mai
         callback: (ExtractorLink) -> Unit
     ): Boolean {
         if (data.contains("sharedisk")) {
+            val sources = mutableListOf<String>()
+            val m = parseJson<MovieLinks>(data)
+            Log.d("Test555",m.toString())
+            val filelions = "https://filelions.to/v/" + m.filelions
+            val streamwish = "https://embedwish.com/e/" + m.streamwish + ".html"
+            val streamruby = "https://streamruby.com/" + m.streamruby
+            sources.add(filelions)
+            sources.add(streamwish)
+            sources.add(streamruby)
+            //sources.add(streamsb)
+            Log.d("Phisher",sources.toString())
+            sources.forEach { url->
+                loadExtractor(url,subtitleCallback,callback)
+            }
+        }else{
             val sources = mutableListOf<String>()
             val m = parseJson<MovieLinks>(data)
             Log.d("Test555",m.toString())
