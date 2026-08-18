@@ -1,5 +1,5 @@
 // use an integer for version numbers
-version = 1
+version = 5
 
 
 cloudstream {
@@ -7,7 +7,7 @@ cloudstream {
 
     description = "Indian Multi-language Music Provider"
     language = "ta"
-    authors = listOf("LikDev-256")
+    authors = listOf("Phisher98,LikDev-256")
 
     /**
     * Status int as the following:
@@ -19,10 +19,12 @@ cloudstream {
     status = 1 // will be 3 if unspecified
 
     // List of video source types. Users are able to filter for extensions in a given category.
-    // You can find a list of avaliable types here:
+    // You can find a list of available types here:
     // https://recloudstream.github.io/cloudstream/html/app/com.lagradost.cloudstream3/-tv-type/index.html
     tvTypes = listOf(
-        "TvSeries",
+        "Music","Movie"
     )
     iconUrl = "https://raw.githubusercontent.com/LikDev-256/likdev256-tamil-providers/master/MassTamilanProvider/icon.png"
+
+    isCrossPlatform = true
 }

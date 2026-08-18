@@ -1,7 +1,9 @@
+@file:Suppress("DEPRECATION_ERROR")
 package com.likdev256
 
-//import android.util.Log
+
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.lagradost.api.Log
 import com.lagradost.cloudstream3.*
 import com.lagradost.cloudstream3.utils.ExtractorLink
 import com.lagradost.cloudstream3.utils.*
@@ -10,14 +12,14 @@ import com.lagradost.cloudstream3.utils.AppUtils.parseJson
 import com.lagradost.cloudstream3.utils.AppUtils.toJson
 import org.jsoup.nodes.Element
 
-class MovieHUBProvider : MainAPI() { // all providers must be an instance of MainAPI
+class MassTamilanProvider : MainAPI() { // all providers must be an instance of MainAPI
     override var mainUrl = "https://masstamilan.dev"
     override var name = "MassTamilan"
     override val hasMainPage = true
     override var lang = "ta"
     override val hasDownloadSupport = true
     override val supportedTypes = setOf(
-        TvType.TvSeries
+        TvType.Music,TvType.Movie
     )
 
     override val mainPage = mainPageOf(
@@ -32,28 +34,18 @@ class MovieHUBProvider : MainAPI() { // all providers must be an instance of Mai
         page: Int,
         request: MainPageRequest
     ): HomePageResponse {
-        val document = if (page == 1) {
-            app.get(request.data).document
-        } else {
-            app.get(request.data + "?page=$page").document
-        }
-
-        //Log.d("Document", request.data)
-        val home = document.select("div.botlist > div.a-i").mapNotNull {
+        val document = app.get("${request.data}?page=$page").document
+        Log.d("Phisher","${request.data}?page=$page")
+        val home = document.select("div.a-i").mapNotNull {
                 it.toSearchResult()
             }
-
-        return HomePageResponse(arrayListOf(HomePageList(request.name, home)), hasNext = true)
+        return newHomePageResponse(arrayListOf(HomePageList(request.name, home)), hasNext = true)
     }
 
     private fun Element.toSearchResult(): SearchResponse? {
-        //Log.d("Got","got here")
-        val title = this.selectFirst("div.info > h2")?.text()?.toString()?.trim() ?: return null
-        //Log.d("title", title)
+        val title = this.selectFirst("div h2")?.text()?.trim() ?: return null
         val href = fixUrl(mainUrl + this.select("a").attr("href"))
-        //Log.d("href", href)
-        val posterUrl = fixUrlNull(this.selectFirst("div.ava > picture > img")?.attr("src"))
-        //Log.d("posterUrl", posterUrl.toString())
+        val posterUrl = fixUrlNull(this.selectFirst("a picture img")?.attr("src"))
         return newTvSeriesSearchResponse(title, href+",,"+title, TvType.TvSeries) {
                 this.posterUrl = posterUrl
             }
@@ -62,47 +54,27 @@ class MovieHUBProvider : MainAPI() { // all providers must be an instance of Mai
     // Search is disabled bcz the provider doesn't support native search the current search is powered by google
     // which is garbaja and im too lazy to work on that PR if you can
 
-    /*override suspend fun search(query: String): List<SearchResponse> {
-        val document = app.get("$mainUrl/?s=$query").document
+    override suspend fun search(query: String): List<SearchResponse> {
+        val document = app.get("$mainUrl/search?keyword=$query").document
         //Log.d("document", document.toString())
 
-        return document.select("div.result-item").mapNotNull {
-            val title = it.selectFirst("article > div.details > div.title > a")?.text().toString().trim()
-            //Log.d("title", titleS)
-            val href = fixUrl(it.selectFirst("article > div.details > div.title > a")?.attr("href").toString())
-            //Log.d("href", href)
-            val posterUrl = fixUrlNull(it.selectFirst("article > div.image > div.thumbnail > a > img")?.attr("src"))
-            //Log.d("posterUrl", posterUrl.toString())
-            //Log.d("QualityN", qualityN)
-            val quality = getQualityFromString(it.select("div.poster > div.mepo > span").text().toString())
-            //Log.d("Quality", quality.toString())
-            val type = it.select("article > div.image > div.thumbnail > a > span").text().toString()
-            if (type.contains("Movie")) {
-                newMovieSearchResponse(title, href, TvType.Movie) {
-                    this.posterUrl = posterUrl
-                    this.quality = quality
-                }
-            } else {
-                newTvSeriesSearchResponse(title, href, TvType.TvSeries) {
-                    this.posterUrl = posterUrl
-                    this.quality = quality
-                }
-            }
+        return document.select("div.a-i").mapNotNull {
+            it.toSearchResult()
         }
-    }*/
+    }
 
     data class MassTamilanLinks (
         @JsonProperty("sourceName") val sourceName: String,
         @JsonProperty("sourceLink") val sourceLink: String
     )
 
-    override suspend fun load(url: String): LoadResponse? {
+    override suspend fun load(url: String): LoadResponse {
         val docLink = url.substringBefore(",,")
         val doc = app.get(docLink).document
         //Log.d("Doc", doc.toString())
         val title = url.substringAfter(",,")
         //Log.d("title", title)
-        val poster = fixUrlNull(mainUrl + doc.selectFirst("#movie-image > figure > picture > img")?.attr("src"))
+        val poster = fixUrlNull(mainUrl + doc.selectFirst("figure.ib > picture > img")?.attr("src"))
         //Log.d("poster", poster.toString())
         val description = doc.select("#movie-handle").text()
         var tags = listOf<String>()
@@ -111,10 +83,7 @@ class MovieHUBProvider : MainAPI() { // all providers must be an instance of Mai
         doc.select("#movie-handle b + a").map { me ->
             tags = me.select("a[href~=-songs]").map { it.text() }
             year = me.select("a[href~=year]").text().trim().toIntOrNull()
-            //Log.d("mybadyear1", me.select("b, a").toString())
-            //Log.d("mybadyear2", me.select("b + a").toString())
-            //Log.d("mybadyear3", me.text())
-            if (!me.select("a[href~=artist]").isNullOrEmpty()) {
+            if (!me.select("a[href~=artist]").isEmpty()) {
                 actors = me.select("a[href~=artist]").map {
                     ActorData(
                         Actor(
@@ -124,7 +93,7 @@ class MovieHUBProvider : MainAPI() { // all providers must be an instance of Mai
                     )
                 }
             }
-            if (!me.select("a[href~=music]").isNullOrEmpty()) {
+            if (!me.select("a[href~=music]").isEmpty()) {
                 actors = me.select("a[href~=music]").map {
                     ActorData(
                         Actor(
@@ -135,7 +104,6 @@ class MovieHUBProvider : MainAPI() { // all providers must be an instance of Mai
                 }
             }
         }
-        //Log.d("mybadinfo", info.toString())
 
         val episodes = ArrayList<Episode>()
         doc.select("#tlist > tbody > tr[itemprop]").map { me ->
@@ -150,16 +118,33 @@ class MovieHUBProvider : MainAPI() { // all providers must be an instance of Mai
                     "Downloads: ${me.select("td > span[itemprop~=item] > span[class~=dl-count]").text()}\n"
 
             episodes.add(
-                Episode(
-                    data = links.toJson(),
-                    name = me.select("td > span > h2 > span[itemprop~=name] > a").text(),
-                    season = 1,
-                    episode = me.select("td > span[itemprop~=position]").text().toInt(),
-                    posterUrl = poster,
-                    description = epPlot
-                )
+                newEpisode(links.toJson())
+                {
+                    this.name=me.select("td > span > h2 > span[itemprop~=name] > a").text()
+                    this.season=1
+                    this.episode=me.select("td > span[itemprop~=position]").text().toInt()
+                    this.posterUrl=poster
+                    this.description=epPlot
+                }
             )
         }
+        val zipLinks = doc.select("h2.ziparea > a.dlink").map {
+            MassTamilanLinks(
+                it.text(),
+                mainUrl + it.attr("href")
+            )
+        }
+
+        episodes.add(
+            newEpisode(zipLinks.toJson())
+            {
+                this.name="Full Zip"
+                this.season=1
+                this.episode=episodes.count()+1
+                this.posterUrl="https://miro.medium.com/v2/resize:fit:720/format:webp/1*nCwjG9N0CkYXOkznDB7kSw.png"
+                this.description= "Zip/Rar links"
+            }
+        )
 
         return newTvSeriesLoadResponse(title, docLink, TvType.TvSeries, episodes) {
                 this.posterUrl = poster
@@ -185,9 +170,10 @@ class MovieHUBProvider : MainAPI() { // all providers must be an instance of Mai
                     ExtractorLink(
                         it.sourceName,
                         it.sourceName,
-                        it.sourceLink,
+                        "https://goodproxy.goodproxy.workers.dev/fetch?url=${it.sourceLink}",
                         "$mainUrl/",
-                        Qualities.Unknown.value
+                        Qualities.Unknown.value,
+                        INFER_TYPE
                     )
                 )
             }

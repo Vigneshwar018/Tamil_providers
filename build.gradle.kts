@@ -1,29 +1,20 @@
-import com.lagradost.cloudstream3.gradle.CloudstreamExtension
 import com.android.build.gradle.BaseExtension
+import com.lagradost.cloudstream3.gradle.CloudstreamExtension
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
+
 buildscript {
     repositories {
         google()
         mavenCentral()
-        // JitPack repo which contains your tools and dependencies
-        maven("https://jitpack.io"  )
-
-
-
-
+        maven("https://jitpack.io")
     }
 
     dependencies {
-        classpath("com.android.tools.build:gradle:7.0.4")
-        // Cloudstream gradle plugin
-        classpath("com.github.recloudstream:gradle:master-SNAPSHOT")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.0")
+        classpath("com.android.tools.build:gradle:8.7.3")
+        classpath("com.github.recloudstream:gradle:-SNAPSHOT")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:2.1.0")
     }
-}
-
-// Move the plugins block to the top level
-plugins {
-    id("org.jetbrains.kotlin.jvm") version "1.9.0"
-
 }
 
 allprojects {
@@ -34,7 +25,6 @@ allprojects {
     }
 }
 
-// Custom functions for your project
 fun Project.cloudstream(configuration: CloudstreamExtension.() -> Unit) = extensions.getByName<CloudstreamExtension>("cloudstream").configuration()
 
 fun Project.android(configuration: BaseExtension.() -> Unit) = extensions.getByName<BaseExtension>("android").configuration()
@@ -45,50 +35,59 @@ subprojects {
     apply(plugin = "com.lagradost.cloudstream3.gradle")
 
     cloudstream {
-        setRepo(System.getenv("GITHUB_REPOSITORY") ?: "https://github.com/LikDev-256/likdev256-tamil-providers")
+        setRepo(System.getenv("GITHUB_REPOSITORY") ?: "https://github.com/phisher98/cloudstream-extensions-phisher")
+        authors = listOf("Phisher98")
     }
 
     android {
-        compileSdkVersion(33)
+        namespace = "com.phisher98"
 
         defaultConfig {
             minSdk = 21
-            targetSdk = 33
+            compileSdkVersion(35)
+            targetSdk = 35
+
         }
 
         compileOptions {
-            sourceCompatibility = JavaVersion.VERSION_1_8
-            targetCompatibility = JavaVersion.VERSION_1_8
+            sourceCompatibility = JavaVersion.VERSION_17
+            targetCompatibility = JavaVersion.VERSION_17
         }
 
-        tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-            kotlinOptions {
-                jvmTarget = "1.8" // Required
-                freeCompilerArgs = freeCompilerArgs +
-                        "-Xno-call-assertions" +
-                        "-Xno-param-assertions" +
-                        "-Xno-receiver-assertions"
+
+        tasks.withType<KotlinJvmCompile> {
+            compilerOptions {
+                jvmTarget.set(JvmTarget.JVM_17)
+                freeCompilerArgs.addAll(
+                    "-Xno-call-assertions",
+                    "-Xno-param-assertions",
+                    "-Xno-receiver-assertions",
+                    "-Xskip-metadata-version-check"
+                )
             }
         }
     }
 
     dependencies {
-        val apk by configurations
         val implementation by configurations
-
-        // Stubs for all Cloudstream classes
-        apk("com.lagradost:cloudstream3:pre-release")
+        val cloudstream by configurations
+        cloudstream("com.lagradost:cloudstream3:pre-release")
 
         // Other dependencies
         implementation(kotlin("stdlib"))
-        implementation("com.github.Blatzar:NiceHttp:0.3.2")
-        implementation("org.jsoup:jsoup:1.15.3")
+        implementation("com.github.Blatzar:NiceHttp:0.4.11")
+        implementation("org.jsoup:jsoup:1.18.3")
         implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.1")
+        implementation("com.fasterxml.jackson.core:jackson-databind:2.13.1")
+        implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.1")
+        implementation("org.mozilla:rhino:1.8.0")
         implementation("me.xdrop:fuzzywuzzy:1.4.0")
-        implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.6.4")
+        implementation("com.google.code.gson:gson:2.11.0")
+        implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
+        implementation("app.cash.quickjs:quickjs-android:0.9.2")
     }
 }
 
-tasks.named<Delete>("clean") {
-    delete(rootProject.buildDir)
+task<Delete>("clean") {
+    delete(rootProject.layout.buildDirectory)
 }
