@@ -7,7 +7,7 @@ cloudstream {
 
     description = "Tamil Only Provider with frequent updates"
     language = "ta"
-    authors = listOf("LikDev-256")
+    authors = listOf("TamilMovie")
 
     /**
     * Status int as the following:
@@ -25,5 +25,5 @@ cloudstream {
         "TvSeries",
         "Movie",
     )
-    iconUrl = "https://raw.githubusercontent.com/LikDev-256/likdev256-tamil-providers/master/TamilYogiNewProvider/logo.png"
+    iconUrl = "https://raw.githubusercontent.com/TamilMovie/TamilMovie-tamil-providers/master/TamilYogiNewProvider/logo.png"
 }

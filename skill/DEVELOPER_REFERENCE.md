@@ -23,7 +23,7 @@ cloudstream-extensions-phisher/
 │   ├── build.gradle.kts      # Plugin metadata (version, language, tvTypes)
 │   └── src/main/
 │       ├── AndroidManifest.xml   # Empty: <?xml version="1.0"?><manifest />
-│       └── kotlin/com/phisher98/
+│       └── kotlin/com/tamil_movie/
 │           ├── ProviderName.kt       # MainAPI implementation
 │           ├── ProviderNamePlugin.kt # Plugin registration
 │           └── Extractors.kt        # Custom video extractors (optional)
@@ -58,7 +58,7 @@ cloudstream {
 
 ### Plugin Registration (Plugin.kt)
 ```kotlin
-package com.phisher98
+package com.tamil_movie
 
 import com.lagradost.cloudstream3.plugins.CloudstreamPlugin
 import com.lagradost.cloudstream3.plugins.BasePlugin

@@ -1,5 +1,5 @@
 @file:Suppress("DEPRECATION_ERROR")
-package com.phisher98
+package com.tamil_movie
 
 import com.lagradost.cloudstream3.*
 import com.lagradost.cloudstream3.utils.*

@@ -7,7 +7,7 @@ cloudstream {
 
     description = "HD Provider for all Indian Languages"
     language = "hi"
-    authors = listOf("LikDev-256,Phisher98")
+    authors = listOf("TamilMovie")
 
     /**
      * Status int as the following:
@@ -25,7 +25,7 @@ cloudstream {
         "TvSeries",
         "Movie",
     )
-    iconUrl = "https://raw.githubusercontent.com/LikDev-256/likdev256-tamil-providers/master/ShowFlixProvider/icon.png"
+    iconUrl = "https://raw.githubusercontent.com/TamilMovie/TamilMovie-tamil-providers/master/ShowFlixProvider/icon.png"
 
     isCrossPlatform = true
 }

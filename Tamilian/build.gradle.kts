@@ -5,7 +5,7 @@ cloudstream {
     language = "ta"
     // All of these properties are optional, you can safely remove them
     description = "Movies (Tamil)"
-    authors = listOf("Phisher98")
+    authors = listOf("TamilMovie")
     /**
      * Status int as the following:
      * 0: Down

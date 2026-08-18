@@ -1,5 +1,5 @@
 @file:Suppress("DEPRECATION_ERROR")
-package com.Phisher98
+package com.tamil_movie
 
 import android.util.Log
 import com.fasterxml.jackson.annotation.JsonProperty

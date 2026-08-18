@@ -1,4 +1,4 @@
-package com.phisher98
+package com.tamil_movie
 
 import com.lagradost.cloudstream3.plugins.CloudstreamPlugin
 import com.lagradost.cloudstream3.plugins.BasePlugin

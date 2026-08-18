@@ -7,7 +7,7 @@ cloudstream {
 
     description = "Indian Multi-language Music Provider"
     language = "ta"
-    authors = listOf("Phisher98,LikDev-256")
+    authors = listOf("TamilMovie")
 
     /**
     * Status int as the following:
@@ -24,7 +24,7 @@ cloudstream {
     tvTypes = listOf(
         "Music","Movie"
     )
-    iconUrl = "https://raw.githubusercontent.com/LikDev-256/likdev256-tamil-providers/master/MassTamilanProvider/icon.png"
+    iconUrl = "https://raw.githubusercontent.com/TamilMovie/TamilMovie-tamil-providers/master/MassTamilanProvider/icon.png"
 
     isCrossPlatform = true
 }
